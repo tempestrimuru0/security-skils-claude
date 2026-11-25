@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.0 - 2026-11-25
+
+- New skill `external-pentest`: authorized external penetration testing with a scope gate (`check-scope.cjs`), CVSS report template and retest section.
+
 ## 2.0.0 - 2026-11-25
 
 - `render-report.cjs`: builds `REPORT.md` from a validated `findings.json`.
