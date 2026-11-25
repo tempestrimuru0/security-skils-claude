@@ -67,18 +67,6 @@ node skills/security-audit/scripts/to-sarif.cjs findings.json results.sarif
 
 `render-report.cjs` orders confirmed findings by severity and lists needs-validation and rejected records. `to-sarif.cjs` exports confirmed and needs-validation records (rejected ones are omitted) so they can be uploaded to GitHub code scanning.
 
-## External pentest skill
-
-`skills/external-pentest/` is a second skill for authorized external penetration tests. It requires a signed scope file and refuses targets outside it:
-
-```bash
-node skills/external-pentest/scripts/check-scope.cjs scope.json app.example.com 203.0.113.5
-```
-
-Exit codes: 0 all targets in scope, 1 at least one out of scope, 2 input error, 3 engagement expired. The skill also has a report template with reproduction steps, CVSS 3.1 severity, and a retest section.
-
-Use it only against systems you are authorized to test.
-
 ## Benchmark
 
 `score-run.cjs` compares a run with an answer key you write for a target with known vulnerabilities:
