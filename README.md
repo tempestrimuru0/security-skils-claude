@@ -33,6 +33,8 @@ skills/security-audit/
 │   └── report-template.md            # REPORT.md template
 └── scripts/
     ├── validate-findings.cjs         # schema validator; --repo checks cited locations
+    ├── render-report.cjs             # builds REPORT.md from a validated findings.json
+    ├── to-sarif.cjs                  # exports findings.json as SARIF 2.1.0
     ├── score-run.cjs                 # benchmark: scores a run against an answer key
     └── *.test.cjs                    # tests (node --test)
 ```
@@ -55,6 +57,15 @@ node skills/security-audit/scripts/validate-findings.cjs path/to/findings.json -
 ```
 
 Without `--repo`, only the schema is checked. With `--repo`, the validator also checks that every cited file exists, every line is in range, and every `quote` appears on its line. A made-up line number fails this check.
+
+## Report and SARIF
+
+```bash
+node skills/security-audit/scripts/render-report.cjs findings.json --name my-repo --commit <sha> --output REPORT.md
+node skills/security-audit/scripts/to-sarif.cjs findings.json results.sarif
+```
+
+`render-report.cjs` orders confirmed findings by severity and lists needs-validation and rejected records. `to-sarif.cjs` exports confirmed and needs-validation records (rejected ones are omitted) so they can be uploaded to GitHub code scanning.
 
 ## Benchmark
 

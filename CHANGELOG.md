@@ -1,6 +1,11 @@
 # Changelog
 
-## Unreleased
+## 2.0.0 - 2026-11-25
+
+- `render-report.cjs`: builds `REPORT.md` from a validated `findings.json`.
+- `to-sarif.cjs`: exports findings as SARIF 2.1.0 for GitHub code scanning.
+- `package.json` with an `npm test` script.
+- 8 new tests (37 in total).
 
 - Validator `--repo` option: checks that cited files exist, lines are in range, and quotes appear on the cited line.
 - Benchmark scorer `score-run.cjs` with tests, for recall and unlisted-finding reporting against an answer key.

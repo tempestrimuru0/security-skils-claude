@@ -45,7 +45,7 @@ Example: a `/debug` route that dumps environment variables and a hard-coded API 
 
 Data exposure behind a check that is itself broken is a separate record when its fix is different. Example: an admin route that returns password columns has a broken session check (fix: verify the session) and a data-exposure problem (fix: stop returning the column). Write both. If the admin route's only defect is the forgeable session, one record is enough.
 5. **Independent check.** For each `confirmed` record, confirm the cited lines match the code. If you read the whole file in this session and the cited lines are in that read, you may check them from that read. Otherwise re-read just those lines. Never check from memory. Fix any mismatch before reporting.
-6. **Report.** Write `REPORT.md` from [references/report-template.md](references/report-template.md). Start with the coverage statement: what was audited, what was not, and the profile used. Every severity claim must match the impact in its record.
+6. **Report.** Generate the draft with `node <skill-dir>/scripts/render-report.cjs <findings.json> --name <repo> --commit <sha> --profile <profile> --coverage <coverage.md> --output REPORT.md`, then check it against [references/report-template.md](references/report-template.md) and add the Notes section. Optionally run `node <skill-dir>/scripts/to-sarif.cjs <findings.json> results.sarif` to export confirmed and needs_validation records for GitHub code scanning. Start with the coverage statement: what was audited, what was not, and the profile used. Every severity claim must match the impact in its record.
 
 If the target is not a git repository, write `Commit reviewed: N/A (not a git repository)` and list the audited files instead.
 
